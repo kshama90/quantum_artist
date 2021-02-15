@@ -36,10 +36,11 @@ def main():
     win.setCoords(0, 0, 1000, 700) #set coordinate system (xll, yll, xur, yur)
    
     data = fbqrng.generate_data(fbqrng.circuit4)
-    firstArray = first(data) #results of 'take_data(..)' and 'first(..)' from artist.py
-    secArray = second(data)
-    thirdArray = third(data)
-    fourthArray = fourth(data) 
+    indata = take_data(data)
+    firstArray = first(indata) #results of 'take_data(..)' and 'first(..)' from artist.py
+    secArray = second(indata)
+    thirdArray = third(indata)
+    fourthArray = fourth(indata)
     
     #The path we'll sweep:
     x = -9; y = -9 #initialize coords.
@@ -86,17 +87,17 @@ def size(i): #the distance between 2 points for a line
 def shape(i): 
     shapeObj = gr.Line if i == 0 else gr.Polygon
     return shapeObj
-    
+
 #extra helpers
 # The following four take Dictionary input 'outputDict' (specifically from 'take_data(..)'
 # and return an array of the nth qubits from the RNG output.
 def first(input):
-    return take_data(input).get('firstArray')
+    return input.get('firstArray')
 def second(input):
-    return take_data(input).get('secondArray')
+    return input.get('secondArray')
 def third(input):
-    return take_data(input).get('thirdArray')
+    return input.get('thirdArray')
 def fourth(input):
-    return take_data(input).get('fourthArray')
+    return input.get('fourthArray')
 
 main()
